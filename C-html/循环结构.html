@@ -1,0 +1,839 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>5.循环结构</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="a6ae01b7-a43f-4101-a661-9cb672c2fcda" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/solid_yellow.png" style="object-position:center 40%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🖱️</span></div><h1 class="page-title">5.循环结构</h1></header><div class="page-body"><h3 id="192e4fb9-26b0-489c-b189-e4108ecd82e2" class="">循环结构：给定条件为<mark class="highlight-blue"><strong>真</strong></mark>时，<mark class="highlight-blue">反复执行某些程序语句或某个程序段</mark>的一种<mark class="highlight-blue">控制结构</mark>。</h3><h3 id="320ed404-4d51-4cb4-bf5f-184cef77cc77" class="">循环体：反复执行的程序段。</h3><h3 id="180ed84b-9b07-4515-898d-9aaf3542d6a8" class="">5.1</h3><p id="95f0cc63-57a9-4378-aa67-ad642cfc299e" class="">略</p><h3 id="00c3df32-dd04-4560-a8af-bb76c6deef94" class="">5.2 while循环</h3><pre id="00084f6b-d4e8-4472-8b9f-d8c9581720ea" class="code"><code>while(循环条件或表达式)
+{
+(循环体);
+}</code></pre><ol type="1" id="7fc81e87-497f-4d05-b3b1-a0574f0bd394" class="numbered-list" start="1"><li><mark class="highlight-blue">计算表达式的值</mark></li></ol><ol type="1" id="3347fe6f-ba61-4de8-b20a-e1debd09f01b" class="numbered-list" start="2"><li>当表达式的值<mark class="highlight-blue">为真</mark>时，执行循环体语句。</li></ol><ol type="1" id="5dc114c0-dd65-4612-acf1-27ecb1a93dbf" class="numbered-list" start="3"><li>再判断表达式的值，<mark class="highlight-red">重复上述步骤</mark>，<mark class="highlight-blue">直到表达式的为假</mark>时，结束循环。</li></ol><ol type="1" id="4b82080d-90ea-40ed-bb5c-bff944b70798" class="numbered-list" start="4"><li>继续执行循环的后续语句。</li></ol><hr id="e268c726-a471-47c7-9bc9-68b4b42e3107"/><hr id="7f2a3eef-dab4-467e-9619-2431a02f61d4"/><p id="04465071-f8cc-4831-887b-4476959b7d76" class="">
+</p><pre id="589b8342-9e5f-4618-b7d6-ff2d38432d8e" class="code"><code>int a=0;//1. 定义变量a,并将其初始化为0.
+while (a&lt;100)//2. 1&lt;100成立,条件成立,该a&lt;100的计算值为真,执行循环体。
+{
+    ......;
+    ......;
+    a++;//3 完成a的自加后返回到判断循环条件,初始化循环条件中的a为2，重复循环过程,直到a=100,不满足判断条件,不再执行循环语句。
+}</code></pre><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="a6a02eb2-6e09-4892-ae85-8a5435c82e3d"><div style="font-size:1.5em"><span class="icon">🔑</span></div><div style="width:100%">如果不能保证每次循环条件中的值被初始化，会形成&quot;死循环&quot;</div></figure><div id="8fe1409b-a2fe-40c9-9b57-e2b1ffbc1193" class="column-list"><div id="93bdd023-812c-4798-81da-d1486cac3ad0" style="width:50%" class="column"><pre id="39bc6382-f5b5-482f-b222-26a0ce454f14" class="code"><code>#include &lt;stdio.h&gt;
+int main ()
+{
+   int a = 10;
+   while( a &lt; 20 )
+   {
+      printf(&quot;a 的值： %d\n&quot;, a);
+      a++;
+   }
+ 
+   return 0;
+}</code></pre><p id="4d950503-766e-4723-bdc1-058cbd8a9a6e" class="">
+</p></div><div id="f283cf67-6936-4f56-9159-b85a58eb8dce" style="width:49.99999999999999%" class="column"><pre id="879ffe5e-3522-4685-be9e-6f1571ca8b61" class="code"><code>a 的值： 10
+a 的值： 11
+a 的值： 12
+a 的值： 13
+a 的值： 14
+a 的值： 15
+a 的值： 16
+a 的值： 17
+a 的值： 18
+a 的值： 19</code></pre></div></div><hr id="43f4d20a-c0c5-4af9-913a-6a55a060c3a9"/><hr id="e70b2e2c-1c2a-4522-a1db-8d871dd65ed2"/><h3 id="5117c4b5-8d8c-4a02-994f-ac469a52508b" class="">5.3 do-while循环</h3><pre id="e8ad43a6-5b4c-4293-907e-7cb9138bfb10" class="code"><code>do
+{
+    (循环体语句);
+}
+while(表达式);</code></pre><p id="8a511d1e-0575-4802-a989-d9a4b49dd99d" class="">步骤</p><ol type="1" id="1128e180-5e80-4c89-96e9-211db4f9844f" class="numbered-list" start="1"><li><mark class="highlight-red">先执行</mark>循环体语句</li></ol><ol type="1" id="dd3fc78d-676b-4d34-ab4f-7223fda08302" class="numbered-list" start="2"><li>判断<mark class="highlight-red">表达式</mark></li></ol><ol type="1" id="b4039eb0-6773-4a69-b478-0eb55e814cf3" class="numbered-list" start="3"><li>当表达式的值为<mark class="highlight-red">真</mark>时,返回重新执行循环体语句,如此反复,直到表达式的值为<mark class="highlight-red">假</mark>时结束循环。</li></ol><p id="2dda17cb-91ed-46e8-826b-bbc1b10e6c4b" class="">输入一个正整数,将其逆序输出。例如输入12345，输出54321</p><div id="1ebb197e-d299-474e-b76d-fa3552690464" class="column-list"><div id="61faa59f-3251-40e9-bde8-a3462de7153e" style="width:50%" class="column"><pre id="427b2d38-d139-4d77-99fb-7e5e34f2c38e" class="code"><code>#include &lt;stdio.h&gt;
+int main()
+{
+    unsigned int a, b;
+    scanf(&quot;%u&quot;, &amp;a);
+    do
+    {
+        b = a % 10;
+        a = a / 10;
+        printf(&quot;%u&quot;, b);
+    } 
+    while (a &gt; 0);
+    printf(&quot;\n&quot;);
+}</code></pre><p id="a674867f-8cd5-4919-8e2e-06644bc179ae" class="">
+</p></div><div id="f838c84e-5986-4dd5-a0ce-6f6aa3d54da5" style="width:50%" class="column"><pre id="bfd5a965-e06d-4fb1-932e-ab388f76e2b3" class="code"><code>第一次循环
+12345%10=5
+12345/10=1234
+判断表达式为真
+
+第二次循环
+1234%10=4
+1234/10=123
+判断表达式为真
+
+******
+123%10=3
+123/10=12
+判断表达式为真
+
+******
+12%10=2
+12/10=1
+判断表达式为真
+
+******
+1%10=1
+1/10=0
+判断表达式为假，结束循环体。</code></pre></div></div><hr id="0f2f2c43-385f-48a1-b0fe-a7dc503c39c7"/><hr id="874f53eb-290c-413e-ad29-5f745aace7a1"/><h3 id="6a5d054c-cf6e-403b-be68-fb40c3f58555" class="">5.4 while与do-while的比较</h3><ul id="c2edd44e-db08-47a0-8487-74ee58ce4ebc" class="bulleted-list"><li style="list-style-type:disc">while：     <mark class="highlight-red">先判断后执行，可能一次也不执行。</mark></li></ul><ul id="3a84e0db-5020-4902-acb9-bb66fabffd9e" class="bulleted-list"><li style="list-style-type:disc">do-while：<mark class="highlight-red">先执行后判断，至少执行一循环。</mark></li></ul><ul id="a4b26d1a-50cb-42d1-b171-dd3dbd03fbb8" class="bulleted-list"><li style="list-style-type:disc">二者都是直到表达式为假结束循环</li></ul><div id="c2cae78e-7c00-4f81-9337-7e09e71dd75d" class="column-list"><div id="dc6f77d1-f202-4f9d-ba0a-7d4f38b1112b" style="width:50%" class="column"><pre id="cbc06c56-0906-4498-98ca-f5f6c60f130c" class="code"><code>#include&lt;stdio.h&gt;
+int main()
+{
+    int sum = 0, i;
+    scanf(&quot;%d&quot;, &amp;i);
+    while(i&lt;=10)
+    {
+        sum = sum + i;
+        i++;
+    }
+    printf(&quot;sum=%d\n&quot;, sum);
+}</code></pre><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="4ecedec1-d074-46d9-8e43-3bdc69726245"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">i为11时，结果为0。</div></figure><p id="2cecb769-22de-4e92-963e-cde3fa43a963" class="">
+</p></div><div id="86a78d2f-de36-4e4d-a636-e7ee6dc6aa1d" style="width:50.000000000000014%" class="column"><pre id="b0b38720-cf11-4e3a-a5b8-33265024720f" class="code"><code>#include&lt;stdio.h&gt;
+int main()
+{
+    int sum = 0, i;
+    scanf(&quot;%d&quot;, &amp;i);
+    do
+    {
+        sum = sum + i;
+    } while (i&lt;=10);
+    
+    printf(&quot;sum=%d\n&quot;, sum);
+}</code></pre><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="81083263-8965-4d7b-b02f-4c7ada742ed9"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">i为11时，结果为11。</div></figure></div></div><hr id="007cc325-e61a-45bb-a6a8-eb0bb47a703b"/><hr id="b309e6c2-673d-4d2d-9fa4-88a750846dc1"/><h3 id="7a23b7be-2804-45ea-bd15-3e2a89154292" class="">5.5 for循环</h3><pre id="c7566a51-cd22-40ad-972f-cabe128f0d8a" class="code"><code>for (表达式1;表达式2;表达式3)
+{
+    (循环语句);
+}</code></pre><p id="5a51f388-9ed5-4364-a0ad-8f954aab44f2" class="">工作原理</p><ol type="1" id="611378a0-89e4-487c-b4d2-e0bfcf121e59" class="numbered-list" start="1"><li>计算表达式1的值</li></ol><ol type="1" id="ddab9207-0424-43bd-9cef-133635738a73" class="numbered-list" start="2"><li>计算表达式2的值（<mark class="highlight-blue">判断循环条件是否为真</mark>）</li></ol><ol type="1" id="30e846a4-508c-4f88-97d5-e50f40dab8a9" class="numbered-list" start="3"><li>若表达式2的真值为真，则执行循环体语句一次。</li></ol><ol type="1" id="c110062d-36ad-4f74-884f-92625e2aac41" class="numbered-list" start="4"><li>计算表达式3的值</li></ol><ol type="1" id="cf934564-ed55-4165-b011-926b8a9aceb9" class="numbered-list" start="5"><li>重复步骤2，直到真值为假，循环终止</li></ol><p id="d9d2dbff-0215-46bc-b8c5-e7d38d0acc27" class="">
+</p><pre id="75051892-60a1-4494-bc4b-d04730e9d995" class="code"><code>输入的值为5,求5的阶乘。
+#include &lt;stdio.h&gt;
+int main()
+{
+    int number,count,factorial=1;
+    printf(&quot;\n 请输入任意一个正整数：&quot;);
+    scanf(&quot;%d&quot;,&amp;number);
+    for(count = 1; count &lt;=number; count++)
+		factorial=factorial*count;
+    printf(&quot;\n %d的阶乘 = %d\n&quot;,number,factorial);
+}</code></pre><hr id="a8860e41-4a96-445f-b705-d5f9638e5eab"/><p id="26d04e9f-dde6-473d-b128-69db091c8561" class="">3应用说明</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="d0833f58-e846-4508-8cc7-146722c0a1c3"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">for语句中的三个表达式都可以省略，分号分隔符均不可以被省略。</div></figure><ol type="1" id="bae58a00-11f5-4a1a-8f9e-0600fa4172e5" class="numbered-list" start="1"><li><mark class="highlight-blue">省略表达式1</mark>即缺少<mark class="highlight-blue">变量赋值</mark>，此时<mark class="highlight-red">应在for语句之前初始化循环变量</mark>。</li></ol><ol type="1" id="9c69f34b-10f0-4dcb-be72-9592f65b90f8" class="numbered-list" start="2"><li><mark class="highlight-blue">省略表达式2</mark>即缺少<mark class="highlight-blue">判断条件</mark>，应在<mark class="highlight-red">循环体内设置结束循环</mark>，否则将因无条件而导致死循环。</li></ol><ol type="1" id="a2550447-eb4a-4bfa-b15a-b788ae6eec5f" class="numbered-list" start="3"><li><mark class="highlight-blue">省略表达式3</mark>即缺少<mark class="highlight-blue">循环变量的修改</mark>，应在<mark class="highlight-red">循环体内修改循环变量</mark>。</li></ol><hr id="65657cc1-b76e-4d52-b76d-db3e9b7d5258"/><hr id="40b79dde-1ee0-4ad2-9607-5e8aac42a1f8"/><p id="e96e8afe-44db-4b8e-ad1c-ecac298efc7f" class="">
+</p><h3 id="8cd500e0-e191-4962-aed3-fd82f3146860" class="">5.6 循环嵌套</h3><p id="91a8efa2-0b67-49f7-a5f8-f25aec6d3260" class="">循环嵌套：一个循环体内又包含另一个完整的循环结构。</p><div id="e66d311f-6bf5-4dae-acd7-9ac6d5f3f6ae" class="column-list"><div id="1fb5b957-5160-421b-b775-339098158b6a" style="width:93.75%" class="column"><pre id="495cf3ca-3efb-47a7-84e8-14e31f887776" class="code"><code>#include&lt;stdio.h&gt;
+int main()
+{
+    int i, j;
+    for (i = 1; i &lt;= 9; i++)
+    {
+        for (j = 1; j &lt;= i;j++)
+            printf(&quot;%d*%d=%d\t&quot;, j, i, j * i);
+    printf(&quot;\n&quot;);
+    }
+    getchar();
+    return 0;
+}</code></pre></div><div id="15c3a2dc-7137-412e-890a-ed36f0eeb4ed" style="width:6.25%" class="column"><p id="b45a70be-6574-4e9c-b30d-c46b627db0ed" class="">
+</p><p id="c3f82629-1314-4e94-8075-887df586adf9" class="">
+</p></div></div><pre id="ef9b18d5-d7f0-4e97-af38-2fcfa8450d60" class="code"><code>1*1=1
+1*2=2   2*2=4
+1*3=3   2*3=6   3*3=9
+1*4=4   2*4=8   3*4=12  4*4=16
+1*5=5   2*5=10  3*5=15  4*5=20  5*5=25
+1*6=6   2*6=12  3*6=18  4*6=24  5*6=30  6*6=36
+1*7=7   2*7=14  3*7=21  4*7=28  5*7=35  6*7=42  7*7=49
+1*8=8   2*8=16  3*8=24  4*8=32  5*8=40  6*8=48  7*8=56  8*8=64
+1*9=9   2*9=18  3*9=27  4*9=36  5*9=45  6*9=54  7*9=63  8*9=72  9*9=81</code></pre><hr id="c83ac15c-11bc-44f0-ae5c-8bae6f10e0c9"/><hr id="b9425261-82c5-44e6-ac5d-3fba1ae35530"/><p id="f920379e-08b8-41ec-8451-d0ff051950f8" class="">
+</p><h3 id="c1fc4517-b5bc-44e6-afcf-404b4f500529" class="">5.7 转移语句</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="28b1738c-b628-4d5e-a30a-0000824a3551"><div style="font-size:1.5em"><span class="icon">🔑</span></div><div style="width:100%">程序中的语句通常是<mark class="highlight-red">按顺序执行</mark>，或<mark class="highlight-red">按语句功能所定义的方向执行</mark>。如果需要改变程序的正常流向，可以使用<strong>转移语句</strong>实现。</div></figure><p id="849e8ce2-8010-443e-baa3-9c564b2a71ee" class="">转移语句：改变程序的正常流向。</p><h3 id="d3c9130f-a5ba-49bc-978a-afa53810f0af" class="">1.break语句</h3><p id="daefd93d-1ba2-435e-9bfc-d881c37957b7" class=""><mark class="highlight-red">break</mark>语句用于<mark class="highlight-blue">switch语句</mark>和<mark class="highlight-blue">循环语句</mark>，作用是跳出本层switch语句或跳出本层循环，转去执行后面的程序。通常与条件语句一起使用。</p><div id="6b89a19d-04d5-4562-a1c0-be2bb717827a" class="column-list"><div id="cf8ce019-acaf-4bd0-b5af-aae204f4a15e" style="width:93.75000000000003%" class="column"><pre id="93c94b12-f3e1-4215-a113-4653c04195ae" class="code"><code>#include&lt;stdio.h&gt;
+int main()
+{
+    int count = 0, ch;
+    printf(&quot;\n请输入一个字符:&quot;);
+    while((ch=getchar()!=&#x27;\n&#x27;))
+    {
+        if(ch==&#x27; &#x27;)
+            break;
+        count++;
+    }
+    printf(&quot;\n共有%d个有效字符。\n&quot;, count);
+}</code></pre><pre id="c6f3927a-c0e6-4a72-a717-e734bcaa9824" class="code"><code>
+
+
+//让计数器为count
+//输出 请输入一个字符:
+//当去最前边字符且不为空格时，执行循环体
+//判断ch是否空格，并向下运行
+//若ch为空格则跳出循环体，执行输出 共有几个有效字符
+//部位空格时，计数器自加，并返回循环条件继续执行
+//输出</code></pre><h3 id="5ccc8491-166d-4315-a793-0d66ba4453f9" class="">2.contine语句</h3></div><div id="0c0ad1e2-c672-4054-98c4-0854b82b4286" style="width:6.25%" class="column"><p id="7a99e3a0-f201-42fb-85a9-f04f9a528261" class="">
+</p></div></div><p id="332dafeb-9e19-4d54-84f6-3f3f7d91dc6e" class="">只能用于循环，作用是跳过循环体中在、剩余的语句而执行下一次循环。</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="42f6cfb2-f603-4d93-8d2e-1127bb3265f7"><div style="font-size:1.5em"><span class="icon">🔑</span></div><div style="width:100%">对于while和do-while循环语句，contine语句执行之后的动作是条件判断。</div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="dd077f74-5cc9-4c87-9c5c-a11ff32e5c3d"><div style="font-size:1.5em"><span class="icon">🔑</span></div><div style="width:100%">对于for循环，contine语句执行之后的动作是更新变量。</div></figure><pre id="52923081-94c4-4ce7-8616-b250b6cfa199" class="code"><code>#include&lt;stdio.h&gt;
+int main()
+{
+    int i,sum;
+    for (i = 1; i &lt;= 100;i++)
+    {
+        if(i%10==3)
+        {
+            continue;
+        }
+        sum += i;
+    }
+    printf(&quot;sum=%d\n&quot;, sum);
+}</code></pre><hr id="8bcd7236-8d06-4914-ae1e-234be4031031"/><hr id="04361275-b67f-4dd5-b68c-835db2d1f600"/><p id="a8f94f6a-098f-4948-871c-812d9be6ec20" class="">
+</p><p id="b0b43229-a9ad-4737-8ae0-080702ba2e3c" class="">
+</p></div></article></body></html>
